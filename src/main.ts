@@ -13,6 +13,9 @@ async function main() {
       // ? Prohíbe el objeto de datos
       forbidNonWhitelisted: true,
       transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
       stopAtFirstError: true,
     }),
   );
