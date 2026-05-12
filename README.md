@@ -28,9 +28,19 @@ docker-compose up -d
 
 5. Clonar archivo **.env.template**
 
-6. LLenar las variables ede entorno definidas en el `.env`
+6. LLenar las variables ede entorno definidas en el `.env` con su cluster de mongoose
 
+7. Correr la aplicacion
+
+```bash
 pnpm run start:dev
+```
+
+8. Correr la seed para llenar la base de datos de pokemons
+
+```bash
+pnpm run seed
+```
 
 ## Stack de tecnologias de este proyecto
 
