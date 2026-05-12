@@ -7,6 +7,7 @@ import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
 import { ConfigModule } from '@nestjs/config';
 import { envConfig } from './common/config/env';
+import { joiValidationSchema } from './common/config/joi.validation';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { envConfig } from './common/config/env';
     ConfigModule.forRoot({
       envFilePath: '.env',
       load: [envConfig],
+      validationSchema: joiValidationSchema,
     }),
 
     ServeStaticModule.forRoot({
@@ -22,7 +24,9 @@ import { envConfig } from './common/config/env';
     }),
     PokemonModule,
 
-    MongooseModule.forRoot(envConfig().mongoDb),
+    MongooseModule.forRoot(process.env.MONGODB!, {
+      dbName: 'pokemonsdb',
+    }),
 
     CommonModule,
 

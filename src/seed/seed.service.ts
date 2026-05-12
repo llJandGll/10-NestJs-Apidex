@@ -24,7 +24,6 @@ export class SeedService {
     );
 
     const pokemons = data.results.map(({ name, url }) => {
-      console.log(url);
       const segments = url.split('/');
       const no: number = +segments[segments.length - 2];
       return { name, no };

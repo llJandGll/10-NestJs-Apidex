@@ -22,7 +22,8 @@ async function main() {
   // ? Agrega un prefijo a todas las rutas
   app.setGlobalPrefix('api/v2');
   // ? Port
-  await app.listen(process.env.PORT ?? 3000);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log('paso por aqui');
+  await app.listen(process.env.PORT!);
+  console.log(`Application is running on port: ${process.env.PORT!}`);
 }
 void main();

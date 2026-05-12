@@ -23,11 +23,21 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class PokemonService {
+  private readonly defaultLimit: number;
+
   constructor(
     @InjectModel(Pokemon.name)
     private readonly pokemonModel: Model<Pokemon>,
     private readonly configService: ConfigService,
-  ) {}
+  ) {
+    this.defaultLimit = this.configService.get<number>(
+      'DEFAULT_LIMIT_POKEMON',
+    )!;
+
+    console.log({
+      defaultLimit: this.configService.get<number>('DEFAULT_LIMIT_POKEMON')!,
+    });
+  }
 
   async create(createPokemonDto: CreatePokemonDto): Promise<Pokemon> {
     createPokemonDto.name = this.changeToLowerCase(createPokemonDto.name);
@@ -40,7 +50,7 @@ export class PokemonService {
   }
 
   async findAll(paginationDto: PaginationDto): Promise<Pokemon[]> {
-    const { limit = 10, offset = 0 } = paginationDto;
+    const { limit = this.defaultLimit, offset = 0 } = paginationDto;
     return await this.pokemonModel
       .find()
       .limit(limit)

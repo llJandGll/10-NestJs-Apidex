@@ -26,6 +26,12 @@ docker-compose up -d
 - password : [Siesquetiene]
 -
 
+5. Clonar archivo **.env.template**
+
+6. LLenar las variables ede entorno definidas en el `.env`
+
+pnpm run start:dev
+
 ## Stack de tecnologias de este proyecto
 
 - MONGODB
